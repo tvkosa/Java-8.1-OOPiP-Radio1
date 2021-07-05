@@ -52,39 +52,29 @@ class RadioTest {
 
     @Test
     public void increaseSoundVolume() {
-        radio.setCurrentVolume(-1);
+        radio.setCurrentVolume(9);
         radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
-        radio.nextBattonPlus();
+        assertEquals(10, radio.getCurrentVolume());
+    }
 
+    @Test
+    public void increaseSoundVolumeMax() {
+        radio.setCurrentVolume(10);
+        radio.nextBattonPlus();
         assertEquals(10, radio.getCurrentVolume());
     }
 
     @Test
     public void decreaseSoundVolume() {
-        radio.setCurrentVolume(11);
+        radio.setCurrentVolume(10);
         radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
-        radio.nextBattonMinus();
+        assertEquals(9, radio.getCurrentVolume());
+    }
 
+    @Test
+    public void decreaseSoundVolumeMin() {
+        radio.setCurrentVolume(0);
+        radio.nextBattonMinus();
         assertEquals(0, radio.getCurrentVolume());
     }
 
@@ -101,6 +91,5 @@ class RadioTest {
         radio.setCurrentVolume(-1);
         assertEquals(0, radio.getCurrentVolume());
     }
-
 }
 
